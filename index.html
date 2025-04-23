@@ -8,155 +8,84 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      background-image: url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?fit=crop&w=1950&q=80'); /* Puedes poner tu propia imagen */
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
       overflow: hidden;
       text-align: center;
+      padding: 20px;
     }
 
     h1 {
       font-size: 3rem;
       animation: fadeIn 2s ease-in-out;
-      color: white;
-      margin-top: 80px;
+      color: #fff;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+      margin-bottom: 30px;
     }
 
     .btn {
-      background-color: #ffffffaa;
+      background-color: #ffffffcc;
       padding: 12px 25px;
       font-size: 1.2rem;
       border: none;
       border-radius: 10px;
       cursor: pointer;
       transition: 0.3s;
-      margin-top: 20px;
     }
 
     .btn:hover {
-      background-color: white;
+      background-color: #fff;
     }
 
     .card {
       display: none;
-      background: #fff8dc;
+      background: #f5f5dc;
       color: #333;
-      padding: 30px;
+      padding: 25px;
       border-radius: 15px;
       width: 90%;
       max-width: 500px;
-      margin: 30px auto;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      border: 8px solid #c2a875;
-      background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      margin-top: 20px;
+      box-shadow: inset 0 0 30px rgba(0,0,0,0.2), 0 10px 30px rgba(0,0,0,0.3);
       font-family: 'Georgia', serif;
+      background-image: url('https://i.imgur.com/9WzHjgu.png'); /* textura pergamino opcional */
+      background-size: cover;
+      background-repeat: no-repeat;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .card p {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      line-height: 1.5;
     }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    .balloon {
-      position: absolute;
-      bottom: -150px;
-      width: 50px;
-      height: 70px;
-      background-color: #ff6f91;
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      animation: float 10s infinite ease-in;
-      opacity: 0.7;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0) translateX(0); }
-      100% { transform: translateY(-110vh) translateX(40px); }
-    }
-
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
   </style>
 </head>
 <body>
   <h1>Feliz cumpleaños Thali 🎉</h1>
-  <button class="btn" onclick="mostrarCarta()">Abrir 💌</button>
+  <button class="btn" onclick="mostrarCarta()">Abrir💌</button>
   <div class="card" id="carta">
-    <p><strong>Querida Thali,</strong></p>
+    <p>Querida Thali,</p>
     <p>Ayer fue un día muy especial muy especial para ti y lamento no haber podido estar contigo. Tuve un inconveniente y el tiempo me ganó. Gracias por iluminar mi vida y la de la gente que te rodea. Espero que este nuevo año te regale momentos hermosos y mucha felicidad. Espero te guste este pequeño detalle.</p>
     <p>Con cariño, Aldair<br>💖</p>
   </div>
-
-  <!-- Globos -->
-  <div class="balloon" style="left: 10%; animation-delay: 0s;"></div>
-  <div class="balloon" style="left: 30%; background-color: #fcbf49; animation-delay: 2s;"></div>
-  <div class="balloon" style="left: 50%; background-color: #90be6d; animation-delay: 4s;"></div>
-  <div class="balloon" style="left: 70%; background-color: #577590; animation-delay: 1s;"></div>
-  <div class="balloon" style="left: 90%; background-color: #f94144; animation-delay: 3s;"></div>
-
-  <!-- Fuegos artificiales -->
-  <canvas id="fireworks"></canvas>
 
   <script>
     function mostrarCarta() {
       document.getElementById('carta').style.display = 'block';
     }
-
-    // Fuegos artificiales
-    const canvas = document.getElementById('fireworks');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    class Particle {
-      constructor(x, y, color) {
-        this.x = x;
-        this.y = y;
-        this.radius = Math.random() * 2 + 1;
-        this.color = color;
-        this.speedX = Math.random() * 6 - 3;
-        this.speedY = Math.random() * 6 - 3;
-        this.alpha = 1;
-      }
-      draw() {
-        ctx.save();
-        ctx.globalAlpha = this.alpha;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-        ctx.restore();
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        this.alpha -= 0.01;
-      }
-    }
-
-    let particles = [];
-    function firework() {
-      const x = Math.random() * canvas.width;
-      const y = Math.random() * canvas.height / 2;
-      const color = `hsl(${Math.random() * 360}, 100%, 60%)`;
-      for (let i = 0; i < 50; i++) {
-        particles.push(new Particle(x, y, color));
-      }
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach((p, i) => {
-        p.update();
-        p.draw();
-        if (p.alpha <= 0) particles.splice(i, 1);
-      });
-      requestAnimationFrame(animate);
-    }
-
-    setInterval(firework, 1500);
-    animate();
   </script>
 </body>
 </html>
+
