@@ -8,9 +8,10 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-image: url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?fit=crop&w=1950&q=80'); /* Puedes poner tu propia imagen */
+      background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1950&q=80');
       background-size: cover;
-      background-position: center;
+      background-position: 0 0;
+      animation: moverCielo 60s linear infinite;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -19,6 +20,11 @@
       overflow: hidden;
       text-align: center;
       padding: 20px;
+    }
+
+    @keyframes moverCielo {
+      from { background-position: 0 0; }
+      to { background-position: 1000px 0; }
     }
 
     h1 {
@@ -54,7 +60,7 @@
       margin-top: 20px;
       box-shadow: inset 0 0 30px rgba(0,0,0,0.2), 0 10px 30px rgba(0,0,0,0.3);
       font-family: 'Georgia', serif;
-      background-image: url('https://i.imgur.com/9WzHjgu.png'); /* textura pergamino opcional */
+      background-image: url('https://i.imgur.com/9WzHjgu.png');
       background-size: cover;
       background-repeat: no-repeat;
       animation: fadeIn 1s ease-in-out;
@@ -74,7 +80,7 @@
 </head>
 <body>
   <h1>Feliz cumpleaños Thali 🎉</h1>
-  <button class="btn" onclick="mostrarCarta()">Abrir💌</button>
+  <button class="btn" onclick="mostrarCarta()">Abrir 💌</button>
   <div class="card" id="carta">
     <p>Querida Thali,</p>
     <p>Ayer fue un día muy especial muy especial para ti y lamento no haber podido estar contigo. Tuve un inconveniente y el tiempo me ganó. Gracias por iluminar mi vida y la de la gente que te rodea. Espero que este nuevo año te regale momentos hermosos y mucha felicidad. Espero te guste este pequeño detalle.</p>
@@ -88,4 +94,3 @@
   </script>
 </body>
 </html>
-
